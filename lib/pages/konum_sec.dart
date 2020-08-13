@@ -6,24 +6,24 @@ class Konum extends StatefulWidget {
 }
 
 class _HomeState extends State<Konum> {
-  void getVeri() async {
-    String isim = await Future.delayed(Duration(seconds: 2), () {
-      return "Emral Yılmaz";
-    });
+  // void getVeri() async {
+  //   String isim = await Future.delayed(Duration(seconds: 2), () {
+  //     return "Emral Yılmaz";
+  //   });
 
-    String yas = await Future.delayed(Duration(seconds: 3), () {
-      return "27";
-    });
+  //   String yas = await Future.delayed(Duration(seconds: 3), () {
+  //     return "27";
+  //   });
 
-    print("$isim ve $yas");
-  }
+  //   print("$isim ve $yas");
+  // }
 
-  @override
-  void initState() {
-    getVeri();
-    print("mesaj");
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getVeri();
+  //   print("mesaj");
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

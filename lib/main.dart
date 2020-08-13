@@ -5,7 +5,7 @@ import 'pages/home.dart';
 
 void main() => runApp(MaterialApp(
       //   home: Home(),
-      initialRoute: "/home",
+      initialRoute: "/",
       routes: {
         "/": (context) => Yukleniyor(),
         "/home": (context) => Home(),

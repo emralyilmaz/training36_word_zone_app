@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training36_word_zone_app/services/word_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Yukleniyor extends StatefulWidget {
   @override
@@ -35,17 +36,11 @@ class _HomeState extends State<Yukleniyor> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(242, 233, 225, 1),
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(203, 232, 107, 1),
-        title: Center(
-            child: Text(
-          "Dünya Saatleri",
-          style: TextStyle(color: Color.fromRGBO(28, 20, 13, 1)),
-        )),
-        elevation: 0.0,
-      ),
       body: Center(
-        child: Text("Yükleniyor"),
+        child: SpinKitRotatingCircle(
+          color: Color.fromRGBO(203, 232, 107, 1),
+          size: 90.0,
+        ),
       ),
     );
   }

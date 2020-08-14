@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Yukleniyor extends StatefulWidget {
@@ -11,15 +11,21 @@ class Yukleniyor extends StatefulWidget {
 
 class _HomeState extends State<Yukleniyor> {
   void getZaman() async {
-    Response res =
-        await get("http://worldtimeapi.org/api/timezone/Europe/Istanbul");
+    http.Response res =
+        await http.get("http://worldtimeapi.org/api/timezone/Europe/Istanbul");
     Map veri = jsonDecode(res.body);
-    print(veri);
+    // print(veri);
     String dateTime = veri["datetime"];
-    String offset = veri["utc_offset"];
+    DateTime now = DateTime.parse(dateTime);
+    // print(now);
+    String offset =
+        veri["utc_offset"].substring(1, 3); // substing parça al gibi çalışıyor.
 
-    print(dateTime);
-    print(offset);
+    // print(dateTime);
+    // print(offset);
+
+    now = now.add(Duration(hours: int.parse(offset)));
+    print(now);
   }
 
   @override

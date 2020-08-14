@@ -6,8 +6,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map routeVeriler = {};
+
   @override
   Widget build(BuildContext context) {
+    routeVeriler = ModalRoute.of(context).settings.arguments;
+    print(routeVeriler);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(203, 232, 107, 1),

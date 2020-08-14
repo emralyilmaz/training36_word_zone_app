@@ -17,6 +17,12 @@ class _HomeState extends State<Yukleniyor> {
     setState(() {
       zaman = nesne.zaman;
     });
+
+    Navigator.pushReplacementNamed(context, "/home", arguments: {
+      "konum": nesne.konum,
+      "bayrak": nesne.bayrak,
+      "zaman": nesne.zaman
+    });
   }
 
   @override
@@ -39,7 +45,7 @@ class _HomeState extends State<Yukleniyor> {
         elevation: 0.0,
       ),
       body: Center(
-        child: Text("$zaman"),
+        child: Text("Yükleniyor"),
       ),
     );
   }

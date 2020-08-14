@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:training36_word_zone_app/services/word_time.dart';
 
 class Yukleniyor extends StatefulWidget {
   @override
@@ -10,27 +7,21 @@ class Yukleniyor extends StatefulWidget {
 }
 
 class _HomeState extends State<Yukleniyor> {
-  void getZaman() async {
-    http.Response res =
-        await http.get("http://worldtimeapi.org/api/timezone/Europe/Istanbul");
-    Map veri = jsonDecode(res.body);
-    // print(veri);
-    String dateTime = veri["datetime"];
-    DateTime now = DateTime.parse(dateTime);
-    // print(now);
-    String offset =
-        veri["utc_offset"].substring(1, 3); // substing parça al gibi çalışıyor.
+  String zaman = "Yükleniyor";
+  void setupWordTime() async {
+    WordTime nesne =
+        WordTime(konum: "Berlin", bayrak: "germany.png", url: "Europe/Berlin");
 
-    // print(dateTime);
-    // print(offset);
-
-    now = now.add(Duration(hours: int.parse(offset)));
-    print(now);
+    await nesne.getZaman();
+    // print(nesne);
+    setState(() {
+      zaman = nesne.zaman;
+    });
   }
 
   @override
   void initState() {
-    getZaman();
+    setupWordTime();
     super.initState();
   }
 
@@ -48,7 +39,7 @@ class _HomeState extends State<Yukleniyor> {
         elevation: 0.0,
       ),
       body: Center(
-        child: Text("Yükleniyor"),
+        child: Text("$zaman"),
       ),
     );
   }

@@ -7,10 +7,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map routeVeriler = {};
+  String bgResim;
 
   @override
   Widget build(BuildContext context) {
     routeVeriler = ModalRoute.of(context).settings.arguments;
+    bgResim = routeVeriler["gunZaman"] ? "daytime.jpg" : "night.jpg";
     print(routeVeriler);
     return Scaffold(
       backgroundColor: Color.fromRGBO(242, 233, 225, 1),

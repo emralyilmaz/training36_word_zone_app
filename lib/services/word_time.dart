@@ -7,6 +7,7 @@ class WordTime {
   String zaman;
   String url;
   String bayrak;
+  bool gunZaman;
 
   WordTime({this.konum, this.bayrak, this.url});
 
@@ -20,6 +21,8 @@ class WordTime {
       String offset = veri["utc_offset"]
           .substring(1, 3); // substing parça al gibi çalışıyor
       now = now.add(Duration(hours: int.parse(offset)));
+
+      gunZaman = now.hour > 6 && now.hour < 20 ? true : false;
 
       zaman = DateFormat.jm()
           .format(now); // saat ve dakika formatlandı (zaman:2:05)

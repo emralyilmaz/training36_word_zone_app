@@ -22,7 +22,8 @@ class _HomeState extends State<Yukleniyor> {
     Navigator.pushReplacementNamed(context, "/home", arguments: {
       "konum": nesne.konum,
       "bayrak": nesne.bayrak,
-      "zaman": nesne.zaman
+      "zaman": nesne.zaman,
+      "gunZaman": nesne.gunZaman
     });
   }
 

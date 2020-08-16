@@ -11,7 +11,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    routeVeriler = ModalRoute.of(context).settings.arguments;
+    routeVeriler = routeVeriler.isNotEmpty
+        ? routeVeriler.isEmpty
+        : ModalRoute.of(context).settings.arguments;
 
     bgResim = routeVeriler["gunZaman"] ? "daytime.jpg" : "night.jpg";
     print(routeVeriler);
@@ -32,8 +34,19 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/konum");
+                  onPressed: () async {
+                    dynamic sonuc =
+                        await Navigator.pushNamed(context, "/konum");
+                    if (sonuc != null) {
+                      setState(() {
+                        routeVeriler = {
+                          "zaman": sonuc["zaman"],
+                          "konum": sonuc["konum"],
+                          "bayrak": sonuc["bayrak"],
+                          "gunZaman": sonuc["gunZaman"],
+                        };
+                      });
+                    }
                   },
                   icon: Icon(
                     Icons.edit_location,

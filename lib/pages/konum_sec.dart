@@ -9,7 +9,25 @@ class Konum extends StatefulWidget {
 class _KonumState extends State<Konum> {
   List<WordTime> konumlar = [
     WordTime(url: "Europe/Istanbul", konum: "Istanbul", bayrak: "turkiye.jpg"),
+    WordTime(url: "America/Chicago", konum: "Chicago", bayrak: "amerika.jpg"),
+    WordTime(url: "America/New_York", konum: "New York", bayrak: "amerika.jpg"),
+    WordTime(url: "Europe/London", konum: "London", bayrak: "ingiltere.jpg"),
+    WordTime(url: "Europe/Berlin", konum: "Berlin", bayrak: "almanya.jpg"),
+    WordTime(url: "Asia/Seoul", konum: "Seoul", bayrak: "guney-kore.jpg"),
+    WordTime(url: "Asia/Tokyo", konum: "Tokyo", bayrak: "japonya.jpg"),
   ];
+
+  void zamanGuncelle(index) async {
+    WordTime nesne = konumlar[index];
+    await nesne.getZaman();
+
+    Navigator.pop(context, {
+      "konum": nesne.konum,
+      "zaman": nesne.zaman,
+      "bayrak": nesne.bayrak,
+      "gunZaman": nesne.gunZaman
+    });
+  }
 
   @override
   void initState() {
@@ -37,7 +55,9 @@ class _KonumState extends State<Konum> {
                     const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
                 child: Card(
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      zamanGuncelle(index);
+                    },
                     title: Text(konumlar[index].konum),
                     leading: CircleAvatar(
                       backgroundImage:

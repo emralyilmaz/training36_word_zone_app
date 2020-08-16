@@ -12,6 +12,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     routeVeriler = ModalRoute.of(context).settings.arguments;
+
     bgResim = routeVeriler["gunZaman"] ? "daytime.jpg" : "night.jpg";
     print(routeVeriler);
     return Scaffold(
@@ -22,7 +23,10 @@ class _HomeState extends State<Home> {
             style: TextStyle(color: Color.fromRGBO(28, 20, 13, 1))),
       ),
       body: SafeArea(
-          child: Center(
+          child: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/$bgResim"), fit: BoxFit.cover)),
         child: Padding(
           padding: const EdgeInsets.only(top: 120),
           child: Column(
@@ -31,27 +35,38 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     Navigator.pushNamed(context, "/konum");
                   },
-                  icon: Icon(Icons.edit_location),
+                  icon: Icon(
+                    Icons.edit_location,
+                    color: Colors.white,
+                  ),
                   label: Text(
                     "Konum Düzenle",
-                    style: TextStyle(color: Color.fromRGBO(28, 20, 13, 1)),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   )),
               SizedBox(
                 height: 100.0,
               ),
-              Column(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     routeVeriler["konum"],
-                    style: TextStyle(fontSize: 25.0, letterSpacing: 2.0),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        letterSpacing: 2.0),
                   ),
                   SizedBox(
                     width: 15.0,
                   ),
                   Text(
                     routeVeriler["zaman"],
-                    style: TextStyle(fontSize: 60.0, letterSpacing: 2.0),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 60.0,
+                        letterSpacing: 2.0),
                   ),
                 ],
               )
